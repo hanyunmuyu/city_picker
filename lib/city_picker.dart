@@ -65,7 +65,10 @@ class _CityPickerState extends State<_CityPicker> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(),
+      appBar: new AppBar(
+        title: new Text('省市县三级联动'),
+        centerTitle: true,
+      ),
       body: new Container(
         width: double.infinity,
         child: new Row(
