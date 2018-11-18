@@ -41,7 +41,6 @@ class _CityPickerState extends State<_CityPicker> {
         this.province = data;
         this.city = data[provinceIndex]['children'];
         this.area = data[provinceIndex]['children'][cityIndex]['children'];
-        _changed(0);
       });
     });
   }
@@ -50,16 +49,6 @@ class _CityPickerState extends State<_CityPicker> {
   void initState() {
     super.initState();
     _loadData();
-  }
-
-  void _changed(int index) {
-    setState(() {
-      provinceIndex = index;
-      cityIndex = 0;
-      areaIndex = 0;
-      city = data[provinceIndex]['children'];
-      area = data[provinceIndex]['children'][cityIndex]['children'];
-    });
   }
 
   @override
@@ -71,69 +60,90 @@ class _CityPickerState extends State<_CityPicker> {
       ),
       body: new Container(
         width: double.infinity,
-        child: new Row(
-          mainAxisSize: MainAxisSize.max,
+        child: new Column(
           children: <Widget>[
-            new Expanded(
-              flex: 1,
-              child: new MyPicker(
-                controller: provinceController,
-                key: Key('province'),
-                createWidgetList: () {
-                  return province.map((v) {
-                    return new Text(v['label']);
-                  }).toList();
-                },
-                changed: (int index) {
-                  setState(() {
-                    cityController.jumpToItem(0);
-                    areaController.jumpToItem(0);
-                    provinceIndex = index;
-                    cityIndex = 0;
-                    areaIndex = 0;
-                    city = data[provinceIndex]['children'];
-                    area =
-                        data[provinceIndex]['children'][cityIndex]['children'];
-                  });
-                },
-              ),
+            new Row(
+              children: <Widget>[
+                FlatButton(onPressed: () {}, child: new Text('取消')),
+                FlatButton(
+                    onPressed: () {
+                      print(data[provinceIndex]);
+                      print(data[provinceIndex]['children'][cityIndex]);
+                      print(data[provinceIndex]['children'][cityIndex]
+                          ['children'][areaIndex]);
+                    },
+                    child: new Text('选择')),
+              ],
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
             ),
             new Expanded(
-              flex: 1,
-              child: new MyPicker(
-                controller: cityController,
-                key: Key('city'),
-                createWidgetList: () {
-                  return city.map((v) {
-                    return new Text(v['label']);
-                  }).toList();
-                },
-                changed: (index) {
-                  setState(() {
-                    areaController.jumpToItem(0);
-                    cityIndex = index;
-                    areaIndex = 0;
-                    area =
-                        data[provinceIndex]['children'][cityIndex]['children'];
-                  });
-                },
-              ),
-            ),
-            new Expanded(
-              flex: 1,
-              child: new MyPicker(
-                controller: areaController,
-                key: Key('area'),
-                createWidgetList: () {
-                  return area.map((v) {
-                    return new Text(v['label']);
-                  }).toList();
-                },
-                changed: (index) {
-                  setState(() {
-                    areaIndex = index;
-                  });
-                },
+              child: new Row(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  new Expanded(
+                    flex: 1,
+                    child: new MyPicker(
+                      controller: provinceController,
+                      key: Key('province'),
+                      createWidgetList: () {
+                        return province.map((v) {
+                          return new Text(v['label']);
+                        }).toList();
+                      },
+                      changed: (int index) {
+                        setState(() {
+                          cityController.jumpToItem(0);
+                          areaController.jumpToItem(0);
+                          provinceIndex = index;
+                          cityIndex = 0;
+                          areaIndex = 0;
+                          city = data[provinceIndex]['children'];
+                          area = data[provinceIndex]['children'][cityIndex]
+                              ['children'];
+                        });
+                      },
+                    ),
+                  ),
+                  new Expanded(
+                    flex: 1,
+                    child: new MyPicker(
+                      controller: cityController,
+                      key: Key('city'),
+                      createWidgetList: () {
+                        return city.map((v) {
+                          return new Text(v['label']);
+                        }).toList();
+                      },
+                      changed: (index) {
+                        setState(() {
+                          areaController.jumpToItem(0);
+                          cityIndex = index;
+                          areaIndex = 0;
+                          area = data[provinceIndex]['children'][cityIndex]
+                              ['children'];
+                        });
+                      },
+                    ),
+                  ),
+                  new Expanded(
+                    flex: 1,
+                    child: new MyPicker(
+                      controller: areaController,
+                      key: Key('area'),
+                      createWidgetList: () {
+                        return area.map((v) {
+                          return new Text(v['label']);
+                        }).toList();
+                      },
+                      changed: (index) {
+                        setState(() {
+                          areaIndex = index;
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
