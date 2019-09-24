@@ -14,4 +14,4 @@ For help getting started with Flutter, view our online
 
 [底部弹出省市区三级联动移步这里](https://github.com/hanyunmuyu/my_city_picker)
 
-[效果图](https://github.com/hanyunmuyu/city_picker/blob/master/video/cover.jpg)
+![效果图](https://github.com/hanyunmuyu/city_picker/blob/master/video/cover.jpg)
