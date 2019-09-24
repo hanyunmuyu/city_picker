@@ -12,4 +12,6 @@ For help getting started with Flutter, view our online
       <source id="mp4" src="https://github.com/hanyunmuyu/city_picker/blob/master/video/video.mp4" type="video/mp4">
 </video>
 
-![效果图](https://github.com/hanyunmuyu/city_picker/blob/master/video/cover.jpg)
+[底部弹出省市区三级联动移步这里](https://github.com/hanyunmuyu/my_city_picker)
+
+[效果图](https://github.com/hanyunmuyu/city_picker/blob/master/video/cover.jpg)
